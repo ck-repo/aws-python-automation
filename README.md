@@ -10,3 +10,4 @@ Place for testing S3 website publishing
 
 - List S3 Buckets
 - List objets in an S3 Bucket
+- Create an S3 Bucket ready for Website Hosting
