@@ -1,9 +1,11 @@
 import boto3
 import click
 from botocore.exceptions import ClientError
+import mimetypes
 
 session = boto3.Session(profile_name='pythonAutomation')
 s3 = session.resource("s3")
+s3_client = session.client('s3')
 
 @click.group()
 def cli():
@@ -69,6 +71,29 @@ def setup_bucket(bucket):
     })
 
     return
+
+@cli.command("upload-file")
+@click.argument("file_name")
+@click.argument("bucket")
+@click.argument("key")
+def upload_file(file_name, bucket, key):
+    "Upload File to S3 Bucket"
+
+    content_type = mimetypes.guess_type(key)[0]
+
+    try:
+        response = s3_client.upload_file(
+            file_name, 
+            bucket, 
+            key,
+            ExtraArgs={
+                "ContentType": "text/html"
+            })
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
 
 if __name__ == '__main__':
         cli()
