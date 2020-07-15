@@ -10,9 +10,11 @@ from botocore.exceptions import ClientError
 
 import click
 
+from bucket import BucketManager
+
 session = boto3.Session(profile_name='pythonAutomation')
-s3 = session.resource("s3")
 s3_client = session.client('s3')
+bucket_manager = BucketManager(session)
 
 
 @click.group()
@@ -24,7 +26,7 @@ def cli():
 @cli.command("list-buckets")
 def list_buckets():
     """List all S3 buckets"""
-    for bucket in s3.buckets.all():
+    for bucket in bucket_manager.all_buckets():
         print(bucket)
 
 
@@ -32,7 +34,7 @@ def list_buckets():
 @click.argument("bucket")
 def list_bucket_objects(bucket):
     """List objects inside an S3 bucket."""
-    for obj in s3.Bucket(bucket).objects.all():
+    for obj in bucket_manager.all_objects(bucket):
         print(obj)
 
 
