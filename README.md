@@ -8,10 +8,11 @@ S3 website publishing program
 
 Webotron Features:
 
+- List S3 Buckets
+- List objects in an S3 Bucket
+- Create an S3 Bucket ready for Website Hosting
 - Upload file to S3 and set content type to text/html
 
 BucketMaster Features:
 
-- List S3 Buckets
-- List objects in an S3 Bucket
-- Create an S3 Bucket ready for Website Hosting
+- Functions inside a class to support Webotron functionality 
