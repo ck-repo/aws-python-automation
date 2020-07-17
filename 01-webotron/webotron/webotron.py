@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Webotron automates the deployment of static websites
+# Webotron automates the deployment of static websites to S3
 
 import mimetypes
 import boto3

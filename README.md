@@ -1,14 +1,17 @@
-Git Repo for Automation AWS with Python Course from by Cloud Guru
+Git Repo for Automating AWS with Python, intially based on the course from A Cloud Guru
 
-###
+#######
 
 01-Webotron:
 
-Place for testing S3 website publishing
+S3 website publishing program
 
-01-Webotron Features:
+Webotron Features:
+
+- Upload file to S3 and set content type to text/html
+
+BucketMaster Features:
 
 - List S3 Buckets
-- List objets in an S3 Bucket
+- List objects in an S3 Bucket
 - Create an S3 Bucket ready for Website Hosting
-- Upload file to S3 and set content type to text/html
