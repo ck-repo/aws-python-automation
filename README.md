@@ -12,6 +12,7 @@ Webotron Features:
 - List objects in an S3 Bucket
 - Create an S3 Bucket ready for Website Hosting
 - Upload file to S3 and set content type to text/html
+- Provide AWS credentials via the "--profile=<profileName>" option
 
 BucketMaster Features:
 
