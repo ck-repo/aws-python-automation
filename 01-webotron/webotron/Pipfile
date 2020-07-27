@@ -10,8 +10,8 @@ pydocstyle = "*"
 
 [packages]
 boto3 = "*"
-sys = "*"
 click = "*"
+sys = "*"
 
 [requires]
 python_version = "3.7"

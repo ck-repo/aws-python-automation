@@ -42,7 +42,7 @@ def setup_bucket(bucket):
 
     bucket_manager.set_policy(s3_bucket)
 
-    bucket_manager.configure_website(s3_bucket))
+    bucket_manager.configure_website(s3_bucket)
 
     return
 
