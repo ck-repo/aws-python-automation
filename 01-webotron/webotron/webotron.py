@@ -7,6 +7,7 @@ import mimetypes
 import boto3
 import click
 from bucket import BucketManager
+#import util
 
 session = None
 bucket_manager = None
@@ -14,7 +15,7 @@ s3_client = None
 
 @click.group()
 @click.option("--profile", default=None,
-    help="Choose an AWS profile to use while executing this command")
+    help="Choose an AWS profile to use while executing commands")
 def cli(profile):
     """Webotron deploys websites to AWS."""
     global session, bucket_manager, s3_client
@@ -54,8 +55,9 @@ def setup_bucket(bucket):
 
     bucket_manager.configure_website(s3_bucket)
 
-    return
+    print(bucket_manager.get_bucket_url(bucket_manager.s3.Bucket(bucket)))
 
+    return
 
 @cli.command("upload-file")
 @click.argument("file_name")
@@ -78,6 +80,9 @@ def upload_file(file_name, bucket, key):
         logging.error(e)
         return False
     return True
+
+
+
 
 
 if __name__ == '__main__':

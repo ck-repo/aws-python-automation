@@ -10,7 +10,7 @@ Webotron Features:
 
 - List S3 Buckets
 - List objects in an S3 Bucket
-- Create an S3 Bucket ready for Website Hosting
+- Create an S3 Bucket ready for Website Hosting and outputs S3 Endpoint URL
 - Upload file to S3 and set content type to text/html
 - Provide AWS credentials via the "--profile=<profileName>" option
 
