@@ -7,7 +7,6 @@ import mimetypes
 import boto3
 import click
 from bucket import BucketManager
-#import util
 
 session = None
 bucket_manager = None
@@ -80,10 +79,6 @@ def upload_file(file_name, bucket, key):
         logging.error(e)
         return False
     return True
-
-
-
-
 
 if __name__ == '__main__':
     cli()
