@@ -7,6 +7,7 @@ import mimetypes
 import boto3
 import click
 from bucket import BucketManager
+from domain import DomainManager
 
 session = None
 bucket_manager = None
@@ -17,7 +18,7 @@ s3_client = None
     help="Choose an AWS profile to use while executing commands")
 def cli(profile):
     """Webotron deploys websites to AWS."""
-    global session, bucket_manager, s3_client
+    global session, bucket_manager, s3_client, domain_manager
 
     session_cfg = {}
     if profile:
@@ -26,7 +27,8 @@ def cli(profile):
     session = boto3.Session(**session_cfg)
     s3_client = session.client('s3')
     bucket_manager = BucketManager(session)
-    pass
+    domain_manager = DomainManager(session)
+
 
 
 @cli.command("list-buckets")
@@ -79,6 +81,14 @@ def upload_file(file_name, bucket, key):
         logging.error(e)
         return False
     return True
+
+@cli.command("setup-domain")
+@click.argument("domain")
+@click.argument("bucket")
+def setup_domain(domain, bucket):
+    """Configure R53 Domain to point to Bucket."""
+    zone = domain_manager.find_hosted_zone(domain)
+    print(zone)
 
 if __name__ == '__main__':
     cli()
