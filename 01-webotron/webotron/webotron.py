@@ -8,6 +8,7 @@ import boto3
 import click
 from bucket import BucketManager
 from domain import DomainManager
+import util
 
 session = None
 bucket_manager = None
@@ -82,13 +83,22 @@ def upload_file(file_name, bucket, key):
         return False
     return True
 
-@cli.command("setup-domain")
-@click.argument("domain")
-@click.argument("bucket")
-def setup_domain(domain, bucket):
-    """Configure R53 Domain to point to Bucket."""
-    zone = domain_manager.find_hosted_zone(domain)
-    print(zone)
+
+
+@cli.command('setup-domain')
+@click.argument('domain')
+def setup_domain(domain):
+    """Configure R53 Domain to point to S3 Bucket."""
+    bucket = bucket_manager.get_bucket(domain)
+
+    zone = domain_manager.find_hosted_zone(domain) \
+        or domain_manager.create_hosted_zone(domain)
+
+    endpoint = util.get_endpoint(bucket_manager.get_region_name(bucket))
+    domain_manager.create_s3_domain_record(zone, domain, endpoint)
+    print("Domain configure: http://{}".format(domain))
+
+#bucket name must be same as website url/DNS name for setup-domain to work
 
 if __name__ == '__main__':
     cli()

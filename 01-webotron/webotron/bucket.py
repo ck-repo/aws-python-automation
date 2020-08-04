@@ -28,6 +28,10 @@ class BucketManager:
             util.get_endpoint(self.get_region_name(bucket)).host
             )
 
+    def get_bucket(self, bucket_name):
+        """Get a bucket by name."""
+        return self.s3.Bucket(bucket_name)
+
     def all_buckets(self):
         """Returns all buckets from AWS Account"""
         return self.s3.buckets.all()
