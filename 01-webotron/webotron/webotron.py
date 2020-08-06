@@ -9,17 +9,20 @@ import click
 from bucket import BucketManager
 from domain import DomainManager
 import util
+from certificate import CertificateManager
 
 session = None
 bucket_manager = None
 s3_client = None
+cert_manager = None
+
 
 @click.group()
 @click.option("--profile", default=None,
     help="Choose an AWS profile to use while executing commands")
 def cli(profile):
     """Webotron deploys websites to AWS."""
-    global session, bucket_manager, s3_client, domain_manager
+    global session, bucket_manager, s3_client, domain_manager, cert_manager
 
     session_cfg = {}
     if profile:
@@ -29,8 +32,7 @@ def cli(profile):
     s3_client = session.client('s3')
     bucket_manager = BucketManager(session)
     domain_manager = DomainManager(session)
-
-
+    cert_manager = CertificateManager(session)
 
 @cli.command("list-buckets")
 def list_buckets():
@@ -99,6 +101,12 @@ def setup_domain(domain):
     print("Domain configure: http://{}".format(domain))
 
 #bucket name must be same as website url/DNS name for setup-domain to work
+
+@cli.command("find-cert")
+@click.argument("domain")
+def find_cert(domain):
+    """Lists Certificates from ACM."""
+    print(cert_manager.find_matching_cert(domain))
 
 if __name__ == '__main__':
     cli()

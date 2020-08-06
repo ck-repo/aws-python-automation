@@ -14,14 +14,19 @@ Webotron Features:
 - Upload file to S3 and set content type to text/html
 - Provide AWS credentials via the "--profile=<profileName>" option
 - Setup Route 53 Hosted Zones and add "A" records to the zone that point to the alias of an S3 website
+- List ACM Certificates per Domain Name
 
-BucketMaster Features:
+BucketManager Features:
 
 - S3 Functions inside a class to support Webotron functionality 
 
-DomainMaster Features:
+DomainManager Features:
 
 - Route53 Functions inside a class to support Webotron functionality 
+
+CertificateManager Features:
+
+- ACM Functions inside a class to support Webotron functionality
 
 Util Features:
 

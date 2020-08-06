@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Classes for S3 Bucket Managment
+"""Classes for S3 Bucket Managment."""
 
 import boto3
 from botocore.exceptions import ClientError
