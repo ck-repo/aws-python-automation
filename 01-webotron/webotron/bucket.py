@@ -4,7 +4,7 @@
 
 import boto3
 from botocore.exceptions import ClientError
-import util
+from webotron import util
 
 class BucketManager:
     """Manage an S3 Bucket."""

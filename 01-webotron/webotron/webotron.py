@@ -6,11 +6,11 @@
 import mimetypes
 import boto3
 import click
-from bucket import BucketManager
-from domain import DomainManager
-import util
-from certificate import CertificateManager
-from cdn import DistributionManager
+from webotron.bucket import BucketManager
+from webotron.domain import DomainManager
+from webotron import util
+from webotron.certificate import CertificateManager
+from webotron.cdn import DistributionManager
 
 session = None
 bucket_manager = None
