@@ -32,7 +32,7 @@ client.authorize_security_group_ingress(
             {'IpProtocol': 'tcp',
              'FromPort': 80,
              'ToPort': 80,
-             'IpRanges': [{'CidrIp': '185.217.117.81/32'}]},
+             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
             {'IpProtocol': 'tcp',
              'FromPort': 22,
              'ToPort': 22,
