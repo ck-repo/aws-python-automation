@@ -22,7 +22,6 @@ instances = ec2.create_instances(ImageId=img, MinCount=1, MaxCount=1, InstanceTy
 
 inst = instances[0]
 inst.public_dns_name
-inst.public_dns_name
 inst.wait_until_running()
 inst.reload()
 
@@ -33,11 +32,11 @@ client.authorize_security_group_ingress(
             {'IpProtocol': 'tcp',
              'FromPort': 80,
              'ToPort': 80,
-             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
+             'IpRanges': [{'CidrIp': '185.217.117.81/32'}]},
             {'IpProtocol': 'tcp',
              'FromPort': 22,
              'ToPort': 22,
              'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
         ])
 
-instances.terminate()
+#instances.terminate()
