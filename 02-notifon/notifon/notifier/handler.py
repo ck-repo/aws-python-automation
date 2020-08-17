@@ -1,9 +1,13 @@
 import json
+import boto3
+import os
 
-def hello(event, context):
-    print(event)
-    
-    return {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "event": event
-    }
+
+def notifier(event, context):
+    client = boto3.client('sns')
+    sns = os.environ['SNSTopic']
+    response = client.publish(
+        TopicArn=sns,
+        Message=json.dumps({'default': json.dumps(event)}),
+        MessageStructure='json'
+    )

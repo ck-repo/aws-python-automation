@@ -1,6 +1,6 @@
-Git Repo for Automating AWS with Python, intially based on the course from A Cloud Guru
+Git Repo for Automating AWS with Python, intially based on the course from A Cloud Guru but adapted with new and different features
 
-#######
+#################################
 
 01-Webotron:
 
@@ -37,11 +37,13 @@ Util Features:
 
 - Host utilies to support Webotron functionality 
 
-######
+##################################
 
 02-Notifon:
 
-
+AWS SNS Notification program 
 
 Notifon Features:
 
+- Email notification of Auto Scaling Group changes using CloudWatch Events, Lambda and SNS
+- Uses Serverless Framework for Infrastructure as Code deployment
