@@ -47,3 +47,14 @@ Notifon Features:
 
 - Email notification of Auto Scaling Group changes using CloudWatch Events, Lambda and SNS
 - Uses Serverless Framework for Infrastructure as Code deployment
+
+##################################
+
+03-Videolyzer:
+
+AWS Rekognition program 
+
+Videolyzer Features:
+
+- Uses AWS Rekognition Label Detection functionality to label videos uploaded to S3 and output labels to DynamoDB
+- Uses Serverless Framework for Infrastructure as Code deployment
