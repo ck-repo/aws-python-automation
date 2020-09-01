@@ -25,6 +25,13 @@ provider:
         Fn::GetAtt:
           - RekognitionSNSPublishRole
           - Arn
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:PutItem"
+      Resource:
+        Fn::GetAtt:
+        - VideosTable
+        - Arn
 
 
 custom:
@@ -46,6 +53,7 @@ custom:
         - Ref: AWS::Region
         - Ref: AWS::AccountId
         - handleLabelDetectionTopic
+  videosTableName: ${file(../config.${self:provider.stage}.json):videolyzer.videos_table}
 
 
 functions:
@@ -65,11 +73,28 @@ functions:
             - suffix: .mp4
   handleLabelDetection:
     handler: handler.handle_label_detection
+    environment:
+      DYNAMODB_TABLE_NAME: ${self:custom.videosTableName}
     events:
       - sns: handleLabelDetectionTopic
 
 resources:
   Resources:
+    VideosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: videoName
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: videoName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.videosTableName}
     RekognitionSNSPublishRole:
       Type: AWS::IAM::Role
       Properties:
